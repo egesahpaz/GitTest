@@ -1,0 +1,68 @@
+
+>>>> hi all,
+>>>>
+>>>> i would like to add a visitor method (@modified) to the generated EMF
+>>>> AbstractElement interface to  get rid of the various 'instanceof' test
+>>>> in several places of the xtext code for a cleaner
+>>>> structuring and better maintainability of the code base.
+>>>>
+>>>> pls. let me know if this is ok for you.
+>>>>
+>>>> thx
+>>>> m
+
+
+
+>>>
+>>> Hi Michael,
+>>>
+>>> you could use the generated Switch class to do that.
+>>> Would that be sufficient?
+>>>
+>>> Sven
+>>>
+
+
+
+>> hi sven,
+>>
+>> could you point me in the right direction pls. did you mean
+>> XtextutilSwitch,ParsetreeSwitch or XtextSwitch
+>> do you have an example code to showcase the usage of the 'generated
+>> switch' class to examine if its sufficient?
+>>
+>>
+>> m
+>>
+
+
+> Hi Michael,
+>
+> I reply for Sven as he's so busy:
+>
+> You can use the generated EMF switches (XtextutilSwitch, ParsetreeSwitch or
+> XtextSwitch) to implement multi-methods (dynamic dispatch) for Ecore models
+> and avoid repetitive usage of "instanceof". The switch classes simply
+> implement a visitor pattern. Inherit from the generated abstract class and
+> override the "caseXXX" methods to return type specific values. Use
+> doSwitch() to call the type specific function.
+>
+> The switch internally uses the much better performing EClass IDs from the
+> EPackage instead of "instanceof". It also takes care of inheritance by
+> switching to the superclass if there is no result.
+>
+> Sorry, I don't have an example at hand, but feel free to ask again if this
+> information is not sufficient.
+>
+> Regards
+> Jan
+>
+
+
+ 
+..now i see, thanks the switch classes are self-explanatory and fit my needs
+
+thanks
+m
+
+
