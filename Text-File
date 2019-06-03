@@ -1,0 +1,57 @@
+ 
+xtext emf object open
+
+https://stackoverflow.com/questions/13458280/how-to-integrate-xtext-with-an-eclipse-plugin
+
+Never ever use the [DSL]StandaloneSetup for your language within Eclipse!
+http://koehnlein.blogspot.com/2012/11/xtext-tip-how-do-i-get-guice-injector.html?m=1
+
+
+arraylist<arraylist> allelements
+arraylist1<markertypeelements> artifacts
+arraylist2<markertypeelements> links
+
+arraylist1<markertypeelements> artifacts
+markertypeelements artifact
+markertypeelements artifact
+markertypeelements artifact
+
+markertypeelements artifact
+string type
+arraylist<markertypeelements> children
+
+
+int i = 0;
+    for(ArrayList<MarkerTypeElements> a : allElements) {
+      System.out.println(a + "\n" + i);
+      i++; //sadece artifacts var a'da
+      for(MarkerTypeElements m: a) {
+        System.out.println(m.getType());
+        for(MarkerTypeElements a2 : m.getChildren()) {
+          System.out.println(a2.getType());
+        }
+      }
+    }
+    
+    
+OUTPUT
+[tarski.handlers.MarkerTypeElements@7c0d43bb, tarski.handlers.MarkerTypeElements@316c725c,  tarski.handlers.MarkerTypeElements@3066c9e8, tarski.handlers.MarkerTypeElements@46d80eb, tarski.handlers.MarkerTypeElements@126b1b46]  ------- ArrayList<MarkerTypeElements>
+0
+ArtifactType  ----- MarkerTypeElements
+TEXT   ------- MarkerTypeElements
+ArtifactType
+TEXT
+ArtifactType
+MODEL
+ArtifactType
+SOURCE_CODE
+ArtifactType
+SOURCE_CODE
+
+
+
+
+
+Text selection  ----- seçili alanı alabiliyor.
+preferences save  ---- dosya konumunu save ediyor.
+github tarski-tool ekleme
